@@ -1,0 +1,8 @@
+# Configuration for active question and scoring parameters
+
+active_question_id: 2
+fps: 25.0
+max_score: 100.0
+frame_tolerance: 12.0
+decay_per_frame: 1.0
+aggregation: "mean"  # Options: "mean", "min", "sum"
