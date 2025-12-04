@@ -4,136 +4,90 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    <title>Admin Dashboard - AIC 2025</title>
-    <link rel="stylesheet" href="/static/admin.css?v=2">
+    <title>Admin - AIC 2025</title>
+    <link rel="stylesheet" href="/static/admin.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Admin Dashboard - AIC 2025</h1>
+            <h1>AIC 2025 ADMIN</h1>
             <div class="header-right">
-                <a href="/leaderboard-ui" target="_blank" class="btn btn-secondary">
-                    View Leaderboard
-                </a>
+                <a href="/leaderboard-ui" target="_blank" class="btn btn-secondary">Leaderboard →</a>
             </div>
         </header>
 
-        <!-- Current Status Panel -->
-        <section class="status-panel" id="status-panel">
-            <div class="status-card">
-                <h3>Active Question</h3>
-                <div class="status-value" id="active-question">-</div>
+        <div class="status-bar">
+            <div class="status-item">
+                <div class="label">Active</div>
+                <div class="value inactive" id="active-question">-</div>
             </div>
-            <div class="status-card">
-                <h3>Time Remaining</h3>
-                <div class="status-value" id="time-remaining">-</div>
+            <div class="status-item">
+                <div class="label">Time</div>
+                <div class="value inactive" id="time-remaining">-</div>
             </div>
-            <div class="status-card">
-                <h3>Submissions</h3>
-                <div class="status-value" id="teams-submitted">0</div>
+            <div class="status-item">
+                <div class="label">Submissions</div>
+                <div class="value" id="teams-submitted">0</div>
             </div>
-            <div class="status-card">
-                <h3>Completed</h3>
-                <div class="status-value" id="teams-completed">0</div>
+            <div class="status-item">
+                <div class="label">Completed</div>
+                <div class="value" id="teams-completed">0</div>
             </div>
-        </section>
+        </div>
 
-        <!-- Main Control Panel - Simplified -->
-        <section class="control-panel">
-            <div class="panel-card full-width">
-                <h2>Question Control</h2>
-                
-                <div class="control-row">
-                    <div class="form-group">
-                        <label for="question-id">Question ID (1-22)</label>
-                        <input 
-                            type="number" 
-                            id="question-id" 
-                            placeholder="Enter question ID" 
-                            min="1" 
-                            max="22"
-                            value="1"
-                        >
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="time-limit">Time Limit (seconds)</label>
-                        <input 
-                            type="number" 
-                            id="time-limit" 
-                            placeholder="Default: 300" 
-                            min="60" 
-                            max="600"
-                            value="300"
-                        >
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="buffer-time">Buffer Time (seconds)</label>
-                        <input 
-                            type="number" 
-                            id="buffer-time" 
-                            placeholder="Default: 10" 
-                            min="0" 
-                            max="60"
-                            value="10"
-                        >
-                    </div>
+        <div class="control-panel">
+            <div class="control-row">
+                <div class="form-group">
+                    <label>Question</label>
+                    <input type="number" id="question-id" placeholder="ID" min="1" max="22" value="1">
                 </div>
-
-                <div class="question-info" id="question-info">
-                    <!-- Question details will be shown here -->
+                <div class="form-group">
+                    <label>Time (s)</label>
+                    <input type="number" id="time-limit" placeholder="300" min="60" max="600" value="300">
                 </div>
-                
-                <div class="button-row">
-                    <button class="btn btn-primary btn-large" onclick="startQuestion()">
-                        START QUESTION
-                    </button>
-                    <button class="btn btn-danger btn-large" onclick="stopCurrentQuestion()">
-                        STOP QUESTION
-                    </button>
-                    <button class="btn btn-warning btn-large" onclick="resetAll()">
-                        RESET ALL
-                    </button>
+                <div class="form-group">
+                    <label>Buffer (s)</label>
+                    <input type="number" id="buffer-time" placeholder="10" min="0" max="60" value="10">
+                </div>
+                <div class="question-info hidden" id="question-info"></div>
+                <div class="button-group">
+                    <button class="btn btn-primary btn-large" onclick="startQuestion()">START</button>
+                    <button class="btn btn-danger btn-large" onclick="stopCurrentQuestion()">STOP</button>
+                    <button class="btn btn-warning btn-large" onclick="resetAll()">RESET</button>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <!-- All Sessions Status -->
-        <section class="sessions-panel">
-            <h2>All Sessions Status</h2>
-            <div class="table-wrapper">
-                <table class="sessions-table" id="sessions-table">
-                    <thead>
-                        <tr>
-                            <th>Question</th>
-                            <th>Type</th>
-                            <th>Status</th>
-                            <th>Time Limit</th>
-                            <th>Submissions</th>
-                            <th>Completed</th>
-                        </tr>
-                    </thead>
-                    <tbody id="sessions-tbody">
-                        <tr>
-                            <td colspan="6" class="loading">Loading sessions...</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
+        <div class="sessions-section">
+            <div class="section-title">Sessions</div>
+            <table class="sessions-table" id="sessions-table">
+                <thead>
+                    <tr>
+                        <th>Q</th>
+                        <th>Type</th>
+                        <th>Status</th>
+                        <th>Time</th>
+                        <th>Subs</th>
+                        <th>Done</th>
+                    </tr>
+                </thead>
+                <tbody id="sessions-tbody">
+                    <tr><td colspan="6" style="text-align:center;color:var(--text-muted);">No sessions</td></tr>
+                </tbody>
+            </table>
+        </div>
 
-        <!-- Response Log -->
-        <section class="log-panel">
-            <h2>Activity Log</h2>
+        <div class="log-section">
+            <div class="section-title">Log</div>
             <div class="log-container" id="log-container">
-                <div class="log-entry log-info">System initialized. Ready to start questions.</div>
+                <div class="log-entry log-info">
+                    <span class="log-time">--:--:--</span>
+                    <span class="log-message">System ready</span>
+                </div>
             </div>
-        </section>
+        </div>
     </div>
 
-    <script src="/static/admin.js?v=2"></script>
+    <script src="/static/admin.js"></script>
 </body>
 </html>

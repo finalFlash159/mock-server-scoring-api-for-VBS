@@ -4,22 +4,27 @@ Fake teams generator for leaderboard simulation
 import random
 from typing import List, Tuple
 
-# Pool of real AIC 2025 team names
+# Pool of real AIC 2025 team names + AI Giants
 TEAM_NAMES = [
+    # AIC 2025 Teams
     "0THING2LOSE", "UIT@Dzeus", "TKU.TonNGoYsss", "UTE AI LAB", "UIT-SHAMROCK",
     "TKU@MBZUAI", "TKU@UNIVORN&WHEAT", "Althena", "Your answer",
     "float97", "KPT", "GALAXY-AI", "Lucifer",
     "FLameReavers", "OpenCubee_1", "OpenCubee2", "Nomial",
-    "AIO - Neural Weavers", "5bros", "AeThanhHoa", "AIO_Trinh"
+    "AIO - Neural Weavers", "5bros", "AeThanhHoa", "AIO_Trinh",
+    # AI Giants & Tech Leaders
+    "Google DeepMind", "OpenAI", "Anthropic", "Meta AI", "Microsoft Research",
+    "NVIDIA Research", "xAI", "Mistral AI", "Cohere", "Stability AI",
+    "Hugging Face", "Tesla AI", "Amazon AGI", "Apple MLR", "Baidu AI"
 ]
 
 
-def generate_fake_team_names(count: int = 20) -> List[str]:
+def generate_fake_team_names(count: int = 36) -> List[str]:
     """
     Generate unique team names for fake leaderboard slots
     
     Args:
-        count: Number of fake teams to generate (default 20 - all AIC 2025 teams)
+        count: Number of fake teams to generate (default 36 - all available teams)
         
     Returns:
         List of unique team names

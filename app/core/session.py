@@ -61,7 +61,7 @@ def initialize_fake_teams(question_id: int) -> Dict[str, TeamSubmission]:
     from app.services.fake_teams import generate_fake_team_names
     
     fake_teams = {}
-    team_names = generate_fake_team_names(20)  # Generate 20 fake teams (all AIC 2025 competitors)
+    team_names = generate_fake_team_names()  # Generate all available fake teams
     
     # Initialize empty placeholders - submissions will be added by background tasks
     for name in team_names:

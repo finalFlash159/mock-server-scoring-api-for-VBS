@@ -33,6 +33,8 @@ uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 ![Admin Dashboard](assests/admin-dashboard.png)
 **Leaderboard**
 ![Leaderboard](assests/leaderboard.png)
+**Overall Ranking**
+![Overall Ranking](assests/overall.png)
 ---
 
 ## 2. Data Configuration (`data/groundtruth.csv`)
